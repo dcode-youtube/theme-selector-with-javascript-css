@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Selector with JavaScript & CSS</title>
+    <link rel="stylesheet" id="themeStylesheetLink" href="css/themes/default.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+    Choose a Theme:
+    <select id="themeSelect">
+        <option value="default">Default</option>
+        <option value="dark">Dark</option>
+    </select>
+    <hr>
+    <h2>Theme Selector with JavaScript & CSS</h2>
+    <p>
+        It's very easy to create a theme selector with JavaScript & CSS.
+    </p>
+    <p>
+        It will even save on page refresh! 😎
+    </p>
+    <script>
+        function initThemeSelector() {
+            const themeSelect = document.getElementById("themeSelect");
+            const themeStylesheetLink = document.getElementById("themeStylesheetLink");
+            const currentTheme = localStorage.getItem("theme") || "default";
+
+            function activateTheme(themeName) {
+                themeStylesheetLink.setAttribute("href", `css/themes/${themeName}.css`);
+            }
+
+            themeSelect.addEventListener("change", () => {
+                activateTheme(themeSelect.value);
+                localStorage.setItem("theme", themeSelect.value);
+            });
+
+
+            themeSelect.value = currentTheme;
+            activateTheme(currentTheme);
+        }
+
+        initThemeSelector();
+    </script>
+</body>
+</html>
